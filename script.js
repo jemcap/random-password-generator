@@ -25,8 +25,20 @@ var specialCharacters = [
   '.'
 ];
 
+console.log(specialCharacters);
 // Array of numeric characters to be included in password
-var numericCharacters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+var numericCharacters = [
+  '0',
+  '1',
+  '2',
+  '3',
+  '4',
+  '5',
+  '6',
+  '7',
+  '8',
+  '9'
+];
 
 // Array of lowercase characters to be included in password
 var lowerCasedCharacters = [
@@ -88,13 +100,34 @@ var upperCasedCharacters = [
   'Z'
 ];
 
+let array = upperCasedCharacters + lowerCasedCharacters + numericCharacters + specialCharacters;
+
 // Function to prompt user for password options
 function getPasswordOptions() {
+  let passPrompt = prompt("How many characters would you like your password to be?");
+  let upperChar = confirm("Would you like to include Uppercase Characters in your password?"); 
+  let lowerChar = confirm("Would you like to include Lowercase Characters in your password?"); 
+  let numChar = confirm("Would you like to include Numbers in your password?"); 
+  let specialChar = confirm("Would you like to include Special Characters in your password?"); 
 
+  while (isNaN(passPrompt) || passPrompt < 10 || passPrompt > 65) {
+    if (passPrompt === null || passPrompt < 10 || passPromt > 65) {
+      return;
+    }
+    alert("Please enter a password length between 10 and 64 characters using numbers only.");
+    passPrompt = prompt("How many characters you want your password to be?");
+  }
+
+  if (!upperChar && !lowerChar && !numChar && !specialChar) {
+    alert("Please select at least one character type.");
+  }
 }
+getPasswordOptions();
+
 
 // Function for getting a random element from an array
 function getRandom(arr) {
+ 
 
 }
 
