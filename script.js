@@ -101,25 +101,39 @@ var upperCasedCharacters = [
 ];
 
 let array = upperCasedCharacters + lowerCasedCharacters + numericCharacters + specialCharacters;
+console.log(array);
+
+
+let passPrompt;
+let upperChar;
+let lowerChar;
+let numChar;
+let specialChar;
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-  let passPrompt = prompt("How many characters would you like your password to be?");
-  let upperChar = confirm("Would you like to include Uppercase Characters in your password?"); 
-  let lowerChar = confirm("Would you like to include Lowercase Characters in your password?"); 
-  let numChar = confirm("Would you like to include Numbers in your password?"); 
-  let specialChar = confirm("Would you like to include Special Characters in your password?"); 
+
+  passPrompt = prompt("How many characters would you like your password to be?");
+  console.log(passPrompt);
+
 
   while (isNaN(passPrompt) || passPrompt < 10 || passPrompt > 65) {
-    if (passPrompt === null || passPrompt < 10 || passPromt > 65) {
+    if (passPrompt === null || passPrompt < 10 || passPrompt > 65) {
       return;
     }
     alert("Please enter a password length between 10 and 64 characters using numbers only.");
-    passPrompt = prompt("How many characters you want your password to be?");
+    passPrompt = prompt("How many characters would you like your password to be?");
   }
+
+  upperChar = confirm("Would you like to include Uppercase Characters in your password?");
+  lowerChar = confirm("Would you like to include Lowercase Characters in your password?");
+  numChar = confirm("Would you like to include Numbers in your password?");
+  specialChar = confirm("Would you like to include Special Characters in your password?");
+  console.log(upperChar);
 
   if (!upperChar && !lowerChar && !numChar && !specialChar) {
     alert("Please select at least one character type.");
+    
   }
 }
 getPasswordOptions();
@@ -127,14 +141,21 @@ getPasswordOptions();
 
 // Function for getting a random element from an array
 function getRandom(arr) {
- 
-
+  return arr[Math.floor(Math.random() * arr.length)];
 }
+
+  let arr = array;
+  console.log(getRandom(arr));
+
+
 
 // Function to generate password with user input
 function generatePassword() {
 
+
 }
+
+generatePassword();
 
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
