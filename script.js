@@ -104,19 +104,16 @@ let array = upperCasedCharacters + lowerCasedCharacters + numericCharacters + sp
 console.log(array);
 
 
-let passPrompt;
-let upperChar;
-let lowerChar;
-let numChar;
-let specialChar;
+let passPrompt = prompt("How many characters would you like your password to be?");
+let upperChar = confirm("Would you like to include Uppercase Characters in your password?");
+let lowerChar = confirm("Would you like to include Lowercase Characters in your password?");
+let numChar = confirm("Would you like to include Numbers in your password?");
+let specialChar = confirm("Would you like to include Special Characters in your password?");
 
 // Function to prompt user for password options
 function getPasswordOptions() {
 
-  passPrompt = prompt("How many characters would you like your password to be?");
   console.log(passPrompt);
-
-
   while (isNaN(passPrompt) || passPrompt < 10 || passPrompt > 65) {
     if (passPrompt === null || passPrompt < 10 || passPrompt > 65) {
       return;
@@ -125,15 +122,9 @@ function getPasswordOptions() {
     passPrompt = prompt("How many characters would you like your password to be?");
   }
 
-  upperChar = confirm("Would you like to include Uppercase Characters in your password?");
-  lowerChar = confirm("Would you like to include Lowercase Characters in your password?");
-  numChar = confirm("Would you like to include Numbers in your password?");
-  specialChar = confirm("Would you like to include Special Characters in your password?");
-  console.log(upperChar);
-
   if (!upperChar && !lowerChar && !numChar && !specialChar) {
     alert("Please select at least one character type.");
-    
+
   }
 }
 getPasswordOptions();
@@ -144,25 +135,57 @@ function getRandom(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
-  let arr = array;
-  console.log(getRandom(arr));
+let arr = array;
+console.log(getRandom(arr));
 
 
 
 // Function to generate password with user input
 function generatePassword() {
+  var password = "";
+  var characterArray = [];
+
+    // Create an array that includes all of the character types the user has selected
+    if (lowerChar === true) {
+      characterArray = characterArray.concat(lowerCasedCharacters);
+    } else {
+      console.log("Not added lower characters")
+    }
+    if (upperChar === true) {
+      characterArray = characterArray.concat(upperCasedCharacters);
+    } else {
+      console.log("Not added uppercase characters")
+    }
+    if (numChar === true) {
+      characterArray = characterArray.concat(numericCharacters);
+    } else {
+      console.log("Not added numbers")
+    }
+    if (specialChar === true) {
+      characterArray = characterArray.concat(specialCharacters);
+    } else {
+      console.log("Not added any special characters")
+    }
+
+    for (var i = 0; i < passPrompt; i++) {
+      password = password + getRandom(characterArray);
+    }
+
+    return password;
+
+  }
 
 
-}
 
-generatePassword();
+
+
 
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
+  password = generatePassword();
   var passwordText = document.querySelector('#password');
 
   passwordText.value = password;
