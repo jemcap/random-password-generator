@@ -100,10 +100,14 @@ var upperCasedCharacters = [
   'Z'
 ];
 
+// There are multiple arrays. How to store those arrays into one array?
+// A new variable is created to store the concatenation of all of the given arrays to store it as one array -- This is to so that it is easier to access all of the elements
 let array = upperCasedCharacters + lowerCasedCharacters + numericCharacters + specialCharacters;
 console.log(array);
 
-
+// Global Variables
+// How to provide the user options>
+// The task is to provide password options for the user and allow customisation depending on their preferences
 let passPrompt = prompt("How many characters would you like your password to be?");
 let upperChar = confirm("Would you like to include Uppercase Characters in your password?");
 let lowerChar = confirm("Would you like to include Lowercase Characters in your password?");
@@ -112,16 +116,16 @@ let specialChar = confirm("Would you like to include Special Characters in your 
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-
+  // This is to determine if the user input is an integer. If the passed value is a number value then the function proceeds, if not, the function loops through the block of code again.
   console.log(passPrompt);
   while (isNaN(passPrompt) || passPrompt < 10 || passPrompt > 65) {
     if (passPrompt === null || passPrompt < 10 || passPrompt > 65) {
       return;
     }
-    alert("Please enter a password length between 10 and 64 characters using numbers only.");
+    alert("Please enter a value between 10 and 65.");
     passPrompt = prompt("How many characters would you like your password to be?");
   }
-
+// An if statement to verify through the user inputs to see is the value for each character type is either true or false.
   if (!upperChar && !lowerChar && !numChar && !specialChar) {
     alert("Please select at least one character type.");
 
@@ -135,6 +139,7 @@ function getRandom(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
+// calls back the variable 'array' and stores it in a new varialbe 'arr', which is also used as a parameter for the function
 let arr = array;
 console.log(getRandom(arr));
 
@@ -142,10 +147,11 @@ console.log(getRandom(arr));
 
 // Function to generate password with user input
 function generatePassword() {
-  var password = "";
-  var characterArray = [];
+  // Create a new variable and store the randomly generated values as a string
+  let password = "";
+  let characterArray = [];
 
-    // Create an array that includes all of the character types the user has selected
+  // Verify's each password option and add the values to the empty array if it is true.
     if (lowerChar === true) {
       characterArray = characterArray.concat(lowerCasedCharacters);
     } else {
@@ -167,7 +173,12 @@ function generatePassword() {
       console.log("Not added any special characters")
     }
 
+    // User inputs a value to determine how many characters they would like for their password (passPrompt)
+    // The for loop generates values up until the value the user has set e.g., user inputs '16', the code loops 16 times, and generates 16 characters.
+
     for (var i = 0; i < passPrompt; i++) {
+      // The password variable is called and the getRandom() function is called, using characterArray as a parameter
+      // This takes in the elements stored in characterArray and randomises a series of values to be stored in 'password'
       password = password + getRandom(characterArray);
     }
 
